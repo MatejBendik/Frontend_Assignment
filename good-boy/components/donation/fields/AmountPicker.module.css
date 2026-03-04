@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 16px;
 }
 
@@ -15,7 +14,7 @@
 .amountInput {
   font-size: 48px;
   font-weight: 700;
-  color: var(--mantine-color-dark-9);
+  color: var(--mantine-color-dark-7);
   border: none;
   outline: none;
   background: transparent;
@@ -42,7 +41,6 @@
 
 .presets {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
+  gap: 16px;
+  justify-content: space-between;
 }

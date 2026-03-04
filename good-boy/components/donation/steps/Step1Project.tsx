@@ -23,7 +23,7 @@ export function Step1Project({
   onAmountChange,
 }: Step1ProjectProps) {
   return (
-    <Stack gap="lg">
+    <Stack gap={40}>
       <Title order={2} fw={800} size="h1">
         Vyberte si možnosť, ako chcete pomôcť
       </Title>
@@ -43,7 +43,7 @@ export function Step1Project({
 
       <div>
         <Text fw={600} mb="sm">
-          Suma, ktorú chcem prispieť
+          Suma, ktorou chcem prispieť
         </Text>
         <AmountPicker value={amount} onChange={onAmountChange} />
       </div>

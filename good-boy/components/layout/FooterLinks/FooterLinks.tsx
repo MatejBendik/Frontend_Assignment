@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Image } from '@mantine/core';
 import { ActionIcon, Group } from '@mantine/core';
 import {
   IconBrandFacebook,
@@ -22,8 +23,7 @@ export function FooterLinks({ showSocial = false }: FooterLinksProps) {
     <footer className={classes.footer}>
       {/* Logo */}
       <Link href="/" className={classes.logo}>
-        <span className={classes.logoIcon}>🐕</span>
-        <span>Good boy</span>
+        <Image src="logo.svg" alt="Good Boy logo" />
       </Link>
 
       {/* Optional social icons */}

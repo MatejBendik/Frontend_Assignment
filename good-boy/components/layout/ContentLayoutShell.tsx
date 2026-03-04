@@ -10,7 +10,7 @@ export function ContentLayoutShell({
 }) {
   return (
     <Container
-      size="lg"
+      size={1280}
       mih="100vh"
       py={{ base: 32, md: 56 }}
       style={{ display: 'flex', flexDirection: 'column' }}

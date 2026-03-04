@@ -15,16 +15,23 @@ export function DonationTypeToggle({ value, onChange }: DonationTypeToggleProps)
       value={value}
       onChange={(val) => onChange(val as DonationType)}
       fullWidth
-      size="md"
-      radius="xl"
+      size="xl"
+      radius="12px"
+      color="violet"
       data={[
         { label: 'Prispieť konkrétnemu útulku', value: 'shelter' },
         { label: 'Prispieť celej nadácii', value: 'foundation' },
       ]}
       styles={{
         root: {
-          backgroundColor: 'var(--mantine-color-gray-1)',
-          padding: 4,
+          backgroundColor: 'var(--mantine-color-white)',
+          border: '1px solid var(--mantine-color-gray-2)',
+        },
+        label: {
+          fontSize: 14,
+          '&[dataActive]': {
+            color: 'var(--mantine-color-white)',
+          },
         },
       }}
     />

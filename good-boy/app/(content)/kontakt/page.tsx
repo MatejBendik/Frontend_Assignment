@@ -79,9 +79,9 @@ export default function KontaktPage() {
 
       {/* Hero image */}
       <Image
-        src="/images/donation-dog.jpg"
+        src="/images/kontakt-dog.jpg"
         alt="Pes na pláži"
-        radius="lg"
+        radius="20px"
         h={{ base: 260, sm: 400 }}
         fit="cover"
         mt="md"

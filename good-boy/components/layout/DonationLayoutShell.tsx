@@ -31,7 +31,7 @@ export function DonationLayoutShell({
           <Box style={{ flex: 1 }}>{children}</Box>
 
           <Box mt={32}>
-            <FooterLinks showSocial />
+            <FooterLinks variant="compact" showSocial />
           </Box>
         </Box>
       </Paper>

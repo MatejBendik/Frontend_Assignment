@@ -41,8 +41,14 @@ export function AmountPicker({ value, onChange }: AmountPickerProps) {
         {PRESETS.map((preset) => (
           <Button
             key={preset}
-            size="sm"
-            radius="xl"
+            size="lg"
+            radius={8}
+            styles = {{
+              root: {
+                fontSize: 16,
+                fontWeight: 500,
+              }
+            }}
             variant={value === preset ? 'filled' : 'default'}
             onClick={() => {
               onChange(preset);

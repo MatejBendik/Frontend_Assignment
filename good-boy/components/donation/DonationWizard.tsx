@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Group, Transition, Box } from '@mantine/core';
+import { Group, Transition, Box, Stack } from '@mantine/core';
 import { DonationStepper } from './DonationStepper';
 import { Step1Project } from './steps/Step1Project';
 import { Step2Personal } from './steps/Step2Personal';
@@ -87,7 +87,7 @@ export function DonationWizard() {
   };
 
   return (
-    <>
+    <Stack gap={40}>
       <DonationStepper currentStep={step} />
 
       <Transition mounted={mounted} transition="fade" duration={200} timingFunction="ease">
@@ -138,7 +138,7 @@ export function DonationWizard() {
       </Transition>
 
       {/* Navigation buttons */}
-      <Group justify="space-between" mt="xl">
+      <Group justify="space-between">
         <SecondaryButton
           onClick={handleBack}
           disabled={step === 0}
@@ -161,6 +161,6 @@ export function DonationWizard() {
           </PrimaryButton>
         )}
       </Group>
-    </>
+    </Stack>
   );
 }
