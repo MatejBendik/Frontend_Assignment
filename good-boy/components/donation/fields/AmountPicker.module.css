@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.amountDisplay {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.amountInput {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--mantine-color-dark-9);
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: right;
+  width: 160px;
+  padding: 0;
+  border-bottom: 3px solid var(--mantine-color-violet-6);
+  line-height: 1.2;
+
+  /* Remove number arrows */
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.currency {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--mantine-color-gray-5);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}

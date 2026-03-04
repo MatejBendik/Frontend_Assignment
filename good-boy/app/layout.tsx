@@ -1,15 +1,14 @@
-import "@mantine/core/styles.css";
-
-import {
-  ColorSchemeScript,
-  MantineProvider,
-  mantineHtmlProps,
-} from "@mantine/core";
-import type { Metadata } from "next";
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import './globals.css';
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
+import type { Metadata } from 'next';
+import { Providers } from './(providers)/providers';
 
 export const metadata: Metadata = {
-  title: "My Mantine app",
-  description: "I have followed setup instructions carefully",
+  title: 'GoodBoy | Podpora útulkov',
+  description:
+    'Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.',
 };
 
 export default function RootLayout({
@@ -18,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="sk" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
