@@ -19,7 +19,7 @@
   outline: none;
   background: transparent;
   text-align: right;
-  width: 160px;
+  width: min(160px, 40vw);
   padding: 0;
   border-bottom: 3px solid var(--mantine-color-violet-6);
   line-height: 1.2;
@@ -41,6 +41,12 @@
 
 .presets {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: space-between;
+}
+
+.presets button {
+  min-width: 70px;
+  flex-shrink: 0;
 }

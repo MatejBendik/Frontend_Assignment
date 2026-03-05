@@ -1,4 +1,4 @@
-import { Group, Text } from '@mantine/core';
+import { Group, Text } from "@mantine/core";
 
 interface SummaryRowProps {
   label: string;
@@ -7,8 +7,8 @@ interface SummaryRowProps {
 
 export function SummaryRow({ label, value }: SummaryRowProps) {
   return (
-    <Group justify="space-between" py={8} style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
-      <Text size="sm" c="dimmed">
+    <Group justify="space-between" py={8}>
+      <Text size="sm" c="dark" fw={400}>
         {label}
       </Text>
       <Text size="sm" fw={600}>

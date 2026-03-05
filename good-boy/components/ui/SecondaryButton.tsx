@@ -1,10 +1,11 @@
-import { Button, type ButtonProps } from '@mantine/core';
-import { IconArrowLeft } from '@tabler/icons-react';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { Button, type ButtonProps } from "@mantine/core";
+import { IconArrowLeft } from "@tabler/icons-react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 interface SecondaryButtonProps
-  extends ButtonProps,
-    Omit<ComponentPropsWithoutRef<'button'>, keyof ButtonProps> {
+  extends
+    ButtonProps,
+    Omit<ComponentPropsWithoutRef<"button">, keyof ButtonProps> {
   children: ReactNode;
   showArrow?: boolean;
 }
@@ -12,13 +13,15 @@ interface SecondaryButtonProps
 export function SecondaryButton({
   children,
   showArrow = true,
+  style,
   ...props
 }: SecondaryButtonProps) {
   return (
     <Button
-      size="md"
-      radius="xl"
+      size="xl"
+      radius="md"
       variant="default"
+      style={{ fontSize: "16px", fontWeight: 500, ...style }}
       leftSection={showArrow ? <IconArrowLeft size={18} /> : undefined}
       {...props}
     >

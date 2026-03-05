@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Checkbox } from '@mantine/core';
-import { Controller, type Control } from 'react-hook-form';
-import type { DonationFormValues } from '@/lib/validation/donationSchema';
+import { Checkbox } from "@mantine/core";
+import { Controller, type Control } from "react-hook-form";
+import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
 interface ConsentCheckboxProps {
   control: Control<DonationFormValues>;
@@ -22,6 +22,7 @@ export function ConsentCheckbox({ control }: ConsentCheckboxProps) {
           error={fieldState.error?.message}
           size="md"
           aria-required
+          pt="sm"
         />
       )}
     />

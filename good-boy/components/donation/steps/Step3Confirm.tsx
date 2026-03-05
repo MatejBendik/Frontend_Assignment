@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Divider, Stack, Text, Title } from '@mantine/core';
-import { ConsentCheckbox } from '../fields/ConsentCheckbox';
-import { SummaryRow } from '../summary/SummaryRow';
-import { useShelters } from '@/lib/query/shelters';
-import type { Control } from 'react-hook-form';
-import type { DonationFormValues } from '@/lib/validation/donationSchema';
+import { Divider, Stack, Text, Title } from "@mantine/core";
+import { ConsentCheckbox } from "../fields/ConsentCheckbox";
+import { SummaryRow } from "../summary/SummaryRow";
+import { useShelters } from "@/lib/query/shelters";
+import type { Control } from "react-hook-form";
+import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
 interface Step3ConfirmProps {
   control: Control<DonationFormValues>;
@@ -27,15 +27,16 @@ export function Step3Confirm({ control, values }: Step3ConfirmProps) {
   const { data: sheltersData } = useShelters();
 
   const formattedType =
-    donationType === 'foundation'
-      ? 'Finančný príspevok celej nadácii'
-      : 'Príspevok konkrétnemu útulku';
+    donationType === "foundation"
+      ? "Finančný príspevok celej nadácii"
+      : "Príspevok konkrétnemu útulku";
 
   const shelterLabel = shelterId
-    ? (sheltersData?.shelters.find((s) => String(s.id) === shelterId)?.name ?? '—')
-    : '—';
-  const fullName = [firstName, lastName].filter(Boolean).join(' ') || '—';
-  const fullPhone = phoneNumber ? `${phoneCountry} ${phoneNumber}` : '—';
+    ? (sheltersData?.shelters.find((s) => String(s.id) === shelterId)?.name ??
+      "—")
+    : "—";
+  const fullName = [firstName, lastName].filter(Boolean).join(" ") || "—";
+  const fullPhone = phoneNumber ? `${phoneCountry} ${phoneNumber}` : "—";
 
   return (
     <Stack gap="lg">
@@ -53,14 +54,16 @@ export function Step3Confirm({ control, values }: Step3ConfirmProps) {
         <SummaryRow label="Suma príspevku" value={`${amount} €`} />
       </div>
 
-      <Divider />
+      <Divider size="xs" />
 
       {/* Personal details summary */}
       <div>
         <SummaryRow label="Meno a priezvisko" value={fullName} />
-        <SummaryRow label="E-mail" value={email || '—'} />
+        <SummaryRow label="E-mail" value={email || "—"} />
         <SummaryRow label="Telefónne číslo" value={fullPhone} />
       </div>
+
+      <Divider size="xs" />
 
       <ConsentCheckbox control={control} />
     </Stack>

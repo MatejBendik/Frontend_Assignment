@@ -20,6 +20,7 @@ export function DonationLayoutShell({
         p={0}
         style={{
           flex: 1,
+          minWidth: 0,
           display: 'flex',
           flexDirection: 'column',
         }}
@@ -41,7 +42,8 @@ export function DonationLayoutShell({
         visibleFrom="md"
         style={{
           width: '42%',
-          flexShrink: 0,
+          flexShrink: 1,
+          minWidth: 0,
           borderRadius: 'var(--mantine-radius-xl)',
           overflow: 'hidden',
           position: 'relative',
