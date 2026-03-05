@@ -1,25 +1,26 @@
 'use client';
 
-import { Group, Select, TextInput } from '@mantine/core';
+import { Group, Select, Text, TextInput } from '@mantine/core';
+import { Controller, useWatch, type Control } from 'react-hook-form';
+import type { DonationFormValues } from '@/lib/validation/donationSchema';
 
 const COUNTRY_OPTIONS = [
-  { value: '+421', label: '🇸🇰 +421' },
-  { value: '+420', label: '🇨🇿 +420' },
+  { value: '+421', label: '🇸🇰' },
+  { value: '+420', label: '🇨🇿' },
 ];
 
+const CODE_MAP: Record<string, string> = {
+  '+421': '+ 421',
+  '+420': '+ 420',
+};
+
 interface PhoneFieldProps {
-  countryCode: string;
-  phoneNumber: string;
-  onCountryChange: (value: string) => void;
-  onPhoneChange: (value: string) => void;
+  control: Control<DonationFormValues>;
 }
 
-export function PhoneField({
-  countryCode,
-  phoneNumber,
-  onCountryChange,
-  onPhoneChange,
-}: PhoneFieldProps) {
+export function PhoneField({ control }: PhoneFieldProps) {
+  const phoneCountry = useWatch({ control, name: 'phoneCountry' });
+
   return (
     <div>
       <label
@@ -30,25 +31,48 @@ export function PhoneField({
           marginBottom: 4,
         }}
       >
-        Telefónne číslo
+        Telefónne číslo{' '}
+        <span style={{ color: 'var(--mantine-color-red-filled)' }}>*</span>
       </label>
       <Group gap="xs" align="flex-start" wrap="nowrap">
-        <Select
-          data={COUNTRY_OPTIONS}
-          value={countryCode}
-          onChange={(val) => onCountryChange(val ?? '+421')}
-          w={120}
-          size="md"
-          allowDeselect={false}
-          aria-label="Predvoľba krajiny"
+        <Controller
+          name="phoneCountry"
+          control={control}
+          render={({ field }) => (
+            <Select
+              data={COUNTRY_OPTIONS}
+              value={field.value}
+              onChange={(val) => field.onChange(val ?? '+421')}
+              onBlur={field.onBlur}
+              w={90}
+              size="md"
+              allowDeselect={false}
+              aria-label="Predvoľba krajiny"
+            />
+          )}
         />
-        <TextInput
-          placeholder="123 321 123"
-          value={phoneNumber}
-          onChange={(e) => onPhoneChange(e.currentTarget.value)}
-          size="md"
-          style={{ flex: 1 }}
-          aria-label="Telefónne číslo"
+        <Controller
+          name="phoneNumber"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextInput
+              placeholder="123 321 123"
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              error={fieldState.error?.message}
+              size="md"
+              style={{ flex: 1 }}
+              leftSection={
+                <Text size="sm" c="dark" fw={500} pl={4}>
+                  {CODE_MAP[phoneCountry] ?? '+ 421'}
+                </Text>
+              }
+              leftSectionWidth={60}
+              aria-label="Telefónne číslo"
+              required
+            />
+          )}
         />
       </Group>
     </div>

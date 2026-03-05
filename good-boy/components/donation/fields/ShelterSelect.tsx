@@ -1,6 +1,8 @@
 'use client';
 
 import { Select } from '@mantine/core';
+import { Controller, type Control } from 'react-hook-form';
+import type { DonationFormValues } from '@/lib/validation/donationSchema';
 
 /** Mock shelter data — will be replaced with API data later */
 const MOCK_SHELTERS = [
@@ -12,23 +14,31 @@ const MOCK_SHELTERS = [
 ];
 
 interface ShelterSelectProps {
-  value: string | null;
-  onChange: (value: string | null) => void;
+  control: Control<DonationFormValues>;
   required?: boolean;
 }
 
-export function ShelterSelect({ value, onChange, required = false }: ShelterSelectProps) {
+export function ShelterSelect({ control, required = false }: ShelterSelectProps) {
   return (
-    <Select
-      label={`Útulok${!required ? ' (Nepovinné)' : ''}`}
-      placeholder="Vyberte útulok zo zoznamu"
-      data={MOCK_SHELTERS}
-      value={value}
-      onChange={onChange}
-      clearable
-      searchable
-      size="md"
-      aria-label="Vyberte útulok"
+    <Controller
+      name="shelterId"
+      control={control}
+      render={({ field, fieldState }) => (
+        <Select
+          label={`Útulok${!required ? ' (Nepovinné)' : ''}`}
+          placeholder="Vyberte útulok zo zoznamu"
+          data={MOCK_SHELTERS}
+          value={field.value}
+          onChange={field.onChange}
+          onBlur={field.onBlur}
+          error={fieldState.error?.message}
+          clearable
+          searchable
+          size="md"
+          required={required}
+          aria-label="Vyberte útulok"
+        />
+      )}
     />
   );
 }

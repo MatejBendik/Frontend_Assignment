@@ -1,33 +1,15 @@
 'use client';
 
 import { Grid, Stack, TextInput, Title, Text } from '@mantine/core';
+import { Controller, type Control } from 'react-hook-form';
 import { PhoneField } from '../fields/PhoneField';
+import type { DonationFormValues } from '@/lib/validation/donationSchema';
 
 interface Step2PersonalProps {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneCountry: string;
-  phoneNumber: string;
-  onFirstNameChange: (value: string) => void;
-  onLastNameChange: (value: string) => void;
-  onEmailChange: (value: string) => void;
-  onPhoneCountryChange: (value: string) => void;
-  onPhoneNumberChange: (value: string) => void;
+  control: Control<DonationFormValues>;
 }
 
-export function Step2Personal({
-  firstName,
-  lastName,
-  email,
-  phoneCountry,
-  phoneNumber,
-  onFirstNameChange,
-  onLastNameChange,
-  onEmailChange,
-  onPhoneCountryChange,
-  onPhoneNumberChange,
-}: Step2PersonalProps) {
+export function Step2Personal({ control }: Step2PersonalProps) {
   return (
     <Stack gap="lg">
       <Title order={2} fw={800} size="h1">
@@ -40,40 +22,63 @@ export function Step2Personal({
 
       <Grid>
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <TextInput
-            label="Meno"
-            placeholder="Zadajte Vaše meno"
-            value={firstName}
-            onChange={(e) => onFirstNameChange(e.currentTarget.value)}
-            size="md"
+          <Controller
+            name="firstName"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                label="Meno"
+                placeholder="Zadajte Vaše meno"
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                error={fieldState.error?.message}
+                maxLength={20}
+                size="md"
+              />
+            )}
           />
         </Grid.Col>
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <TextInput
-            label="Priezvisko"
-            placeholder="Zadajte Vaše priezvisko"
-            value={lastName}
-            onChange={(e) => onLastNameChange(e.currentTarget.value)}
-            size="md"
+          <Controller
+            name="lastName"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                label="Priezvisko"
+                placeholder="Zadajte Vaše priezvisko"
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                error={fieldState.error?.message}
+                maxLength={30}
+                size="md"
+                required
+              />
+            )}
           />
         </Grid.Col>
       </Grid>
 
-      <TextInput
-        label="E-mailová adresa"
-        placeholder="Zadajte Váš e-mail"
-        type="email"
-        value={email}
-        onChange={(e) => onEmailChange(e.currentTarget.value)}
-        size="md"
+      <Controller
+        name="email"
+        control={control}
+        render={({ field, fieldState }) => (
+          <TextInput
+            label="E-mailová adresa"
+            placeholder="Zadajte Váš e-mail"
+            type="email"
+            value={field.value}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            error={fieldState.error?.message}
+            size="md"
+            required
+          />
+        )}
       />
 
-      <PhoneField
-        countryCode={phoneCountry}
-        phoneNumber={phoneNumber}
-        onCountryChange={onPhoneCountryChange}
-        onPhoneChange={onPhoneNumberChange}
-      />
+      <PhoneField control={control} />
     </Stack>
   );
 }

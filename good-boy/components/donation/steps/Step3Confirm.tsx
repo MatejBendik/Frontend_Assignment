@@ -3,7 +3,8 @@
 import { Divider, Stack, Text, Title } from '@mantine/core';
 import { ConsentCheckbox } from '../fields/ConsentCheckbox';
 import { SummaryRow } from '../summary/SummaryRow';
-import type { DonationType } from '../fields/DonationTypeToggle';
+import type { Control } from 'react-hook-form';
+import type { DonationFormValues } from '@/lib/validation/donationSchema';
 
 /** Mock shelter label lookup */
 const SHELTER_LABELS: Record<string, string> = {
@@ -15,30 +16,22 @@ const SHELTER_LABELS: Record<string, string> = {
 };
 
 interface Step3ConfirmProps {
-  donationType: DonationType;
-  shelterId: string | null;
-  amount: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneCountry: string;
-  phoneNumber: string;
-  consent: boolean;
-  onConsentChange: (value: boolean) => void;
+  control: Control<DonationFormValues>;
+  values: DonationFormValues;
 }
 
-export function Step3Confirm({
-  donationType,
-  shelterId,
-  amount,
-  firstName,
-  lastName,
-  email,
-  phoneCountry,
-  phoneNumber,
-  consent,
-  onConsentChange,
-}: Step3ConfirmProps) {
+export function Step3Confirm({ control, values }: Step3ConfirmProps) {
+  const {
+    donationType,
+    shelterId,
+    amount,
+    firstName,
+    lastName,
+    email,
+    phoneCountry,
+    phoneNumber,
+  } = values;
+
   const formattedType =
     donationType === 'foundation'
       ? 'Finančný príspevok celej nadácii'
@@ -46,8 +39,7 @@ export function Step3Confirm({
 
   const shelterLabel = shelterId ? (SHELTER_LABELS[shelterId] ?? '—') : '—';
   const fullName = [firstName, lastName].filter(Boolean).join(' ') || '—';
-  const fullPhone =
-    phoneNumber ? `${phoneCountry} ${phoneNumber}` : '—';
+  const fullPhone = phoneNumber ? `${phoneCountry} ${phoneNumber}` : '—';
 
   return (
     <Stack gap="lg">
@@ -74,7 +66,7 @@ export function Step3Confirm({
         <SummaryRow label="Telefónne číslo" value={fullPhone} />
       </div>
 
-      <ConsentCheckbox checked={consent} onChange={onConsentChange} />
+      <ConsentCheckbox control={control} />
     </Stack>
   );
 }

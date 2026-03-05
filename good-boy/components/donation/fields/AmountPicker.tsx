@@ -1,65 +1,77 @@
 'use client';
 
-import { Button } from '@mantine/core';
+import { Button, Text } from '@mantine/core';
 import { useRef } from 'react';
+import { Controller, type Control } from 'react-hook-form';
+import type { DonationFormValues } from '@/lib/validation/donationSchema';
 import classes from './AmountPicker.module.css';
 
 const PRESETS = [5, 10, 20, 30, 50, 100];
 
 interface AmountPickerProps {
-  value: number;
-  onChange: (value: number) => void;
+  control: Control<DonationFormValues>;
 }
 
-export function AmountPicker({ value, onChange }: AmountPickerProps) {
+export function AmountPicker({ control }: AmountPickerProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^0-9]/g, '');
-    onChange(raw === '' ? 0 : parseInt(raw, 10));
-  };
-
   return (
-    <div className={classes.wrapper}>
-      {/* Large editable amount display */}
-      <div className={classes.amountDisplay}>
-        <input
-          ref={inputRef}
-          type="text"
-          inputMode="numeric"
-          className={classes.amountInput}
-          value={value || ''}
-          onChange={handleInputChange}
-          placeholder="0"
-          aria-label="Suma príspevku v eurách"
-        />
-        <span className={classes.currency}>€</span>
-      </div>
+    <Controller
+      name="amount"
+      control={control}
+      render={({ field, fieldState }) => {
+        const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const raw = e.target.value.replace(/[^0-9]/g, '');
+          field.onChange(raw === '' ? 0 : parseInt(raw, 10));
+        };
 
-      {/* Preset amount buttons */}
-      <div className={classes.presets}>
-        {PRESETS.map((preset) => (
-          <Button
-            key={preset}
-            size="lg"
-            radius={8}
-            styles = {{
-              root: {
-                fontSize: 16,
-                fontWeight: 500,
-              }
-            }}
-            variant={value === preset ? 'filled' : 'default'}
-            onClick={() => {
-              onChange(preset);
-              inputRef.current?.focus();
-            }}
-            aria-label={`${preset} eur`}
-          >
-            {preset} €
-          </Button>
-        ))}
-      </div>
-    </div>
+        return (
+          <div className={classes.wrapper}>
+            <div className={classes.amountDisplay}>
+              <input
+                ref={inputRef}
+                type="text"
+                inputMode="numeric"
+                className={classes.amountInput}
+                value={field.value || ''}
+                onChange={handleInputChange}
+                onBlur={field.onBlur}
+                placeholder="0"
+                aria-label="Suma príspevku v eurách"
+                data-error={fieldState.error ? '' : undefined}
+              />
+              <span className={classes.currency}>€</span>
+            </div>
+
+            <div className={classes.presets}>
+              {PRESETS.map((preset) => (
+                <Button
+                  key={preset}
+                  size="lg"
+                  radius={8}
+                  styles={{
+                    root: { fontSize: 16, fontWeight: 500 },
+                  }}
+                  variant={field.value === preset ? 'filled' : 'default'}
+                  onClick={() => {
+                    field.onChange(preset);
+                    inputRef.current?.focus();
+                  }}
+                  aria-label={`${preset} eur`}
+                >
+                  {preset} €
+                </Button>
+              ))}
+            </div>
+
+            {fieldState.error && (
+              <Text c="red" size="sm">
+                {fieldState.error.message}
+              </Text>
+            )}
+          </div>
+        );
+      }}
+    />
   );
 }
