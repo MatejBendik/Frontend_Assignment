@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Group, Transition, Box, Stack } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DonationStepper } from './DonationStepper';
@@ -10,6 +11,7 @@ import { Step2Personal } from './steps/Step2Personal';
 import { Step3Confirm } from './steps/Step3Confirm';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { SecondaryButton } from '@/components/ui/SecondaryButton';
+import { useContribute } from '@/lib/query/shelters';
 import {
   donationSchema,
   STEP_FIELDS,
@@ -40,6 +42,7 @@ export function DonationWizard() {
   });
 
   const { control, trigger, handleSubmit, getValues } = form;
+  const contribute = useContribute();
 
   const goTo = (next: number) => {
     setMounted(false);
@@ -86,8 +89,21 @@ export function DonationWizard() {
       value: data.amount,
     };
 
-    // eslint-disable-next-line no-console
-    console.log('Form submitted:', payload);
+    contribute.mutate(payload, {
+      onSuccess: (res) => {
+        const msg = res.messages?.[0]?.message ?? 'Príspevok bol úspešne zaznamenaný';
+        notifications.show({ title: 'Ďakujeme!', message: msg, color: 'green' });
+        form.reset();
+        goTo(0);
+      },
+      onError: () => {
+        notifications.show({
+          title: 'Chyba',
+          message: 'Nepodarilo sa odoslať príspevok. Skúste to znova.',
+          color: 'red',
+        });
+      },
+    });
   };
 
   return (

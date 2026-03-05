@@ -3,18 +3,16 @@
 import {
   Divider,
   Grid,
+  Skeleton,
   Stack,
   Text,
 } from '@mantine/core';
 import { ContentPageHeader } from '@/components/layout/ContentPageHeader';
-
-/** Mock stats — will be replaced with API data via TanStack Query later */
-const MOCK_STATS = {
-  totalRaised: '12 200',
-  donorCount: '1 028',
-};
+import { useShelterResults } from '@/lib/query/shelters';
 
 export default function OProjektePage() {
+  const { data, isLoading } = useShelterResults();
+
   return (
     <Stack gap="xl">
       <ContentPageHeader title="O projekte" />
@@ -37,30 +35,38 @@ export default function OProjektePage() {
       <Grid gutter="xl">
         <Grid.Col span={{ base: 12, sm: 6 }}>
           <Stack align="center" gap={4}>
-            <Text
-              size="xl"
-              fw={800}
-              c="violet"
-              style={{ fontSize: 48, lineHeight: 1.1 }}
-            >
-              {MOCK_STATS.totalRaised} €
-            </Text>
-            <Text size="sm" c="dimmed" fw={500}>
+            {isLoading ? (
+              <Skeleton height={53} width={200} />
+            ) : (
+              <Text
+                size="xl"
+                fw={600}
+                c="violet"
+                style={{ fontSize: 60, lineHeight: 1.1 }}
+              >
+                {data?.contribution.toLocaleString('sk-SK')} €
+              </Text>
+            )}
+            <Text size="18px" c="dark" fw={500}>
               Celková vyzbieraná hodnota
             </Text>
           </Stack>
         </Grid.Col>
         <Grid.Col span={{ base: 12, sm: 6 }}>
           <Stack align="center" gap={4}>
-            <Text
-              size="xl"
-              fw={800}
-              c="violet"
-              style={{ fontSize: 48, lineHeight: 1.1 }}
-            >
-              {MOCK_STATS.donorCount}
-            </Text>
-            <Text size="sm" c="dimmed" fw={500}>
+            {isLoading ? (
+              <Skeleton height={53} width={120} />
+            ) : (
+              <Text
+                size="xl"
+                fw={600}
+                c="violet"
+                style={{ fontSize: 60, lineHeight: 1.1 }}
+              >
+                {data?.contributors.toLocaleString('sk-SK')}
+              </Text>
+            )}
+            <Text size="18px" c="dark" fw={500}>
               Počet darcov
             </Text>
           </Stack>

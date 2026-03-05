@@ -2,16 +2,8 @@
 
 import { Select } from '@mantine/core';
 import { Controller, type Control } from 'react-hook-form';
+import { useShelters } from '@/lib/query/shelters';
 import type { DonationFormValues } from '@/lib/validation/donationSchema';
-
-/** Mock shelter data — will be replaced with API data later */
-const MOCK_SHELTERS = [
-  { value: '1', label: 'Mestský útulok, Žilina' },
-  { value: '2', label: 'OZ Tuláčik, Bratislava' },
-  { value: '3', label: 'Sloboda zvierat, Košice' },
-  { value: '4', label: 'Útulok Piešťany' },
-  { value: '5', label: 'Psí domov, Banská Bystrica' },
-];
 
 interface ShelterSelectProps {
   control: Control<DonationFormValues>;
@@ -19,6 +11,13 @@ interface ShelterSelectProps {
 }
 
 export function ShelterSelect({ control, required = false }: ShelterSelectProps) {
+  const { data, isLoading } = useShelters();
+
+  const shelterOptions = (data?.shelters ?? []).map((s) => ({
+    value: String(s.id),
+    label: s.name,
+  }));
+
   return (
     <Controller
       name="shelterId"
@@ -27,7 +26,7 @@ export function ShelterSelect({ control, required = false }: ShelterSelectProps)
         <Select
           label={`Útulok${!required ? ' (Nepovinné)' : ''}`}
           placeholder="Vyberte útulok zo zoznamu"
-          data={MOCK_SHELTERS}
+          data={shelterOptions}
           value={field.value}
           onChange={field.onChange}
           onBlur={field.onBlur}
@@ -36,6 +35,7 @@ export function ShelterSelect({ control, required = false }: ShelterSelectProps)
           searchable
           size="md"
           required={required}
+          disabled={isLoading}
           aria-label="Vyberte útulok"
         />
       )}

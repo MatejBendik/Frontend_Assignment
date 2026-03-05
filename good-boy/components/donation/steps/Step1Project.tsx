@@ -1,10 +1,12 @@
 'use client';
 
-import { Stack, Text, Title } from '@mantine/core';
+import { Group, Stack, Text, Title } from '@mantine/core';
+import { IconHeart, IconUsers } from '@tabler/icons-react';
 import { useWatch, type Control } from 'react-hook-form';
 import { DonationTypeToggle } from '../fields/DonationTypeToggle';
 import { ShelterSelect } from '../fields/ShelterSelect';
 import { AmountPicker } from '../fields/AmountPicker';
+import { useShelterResults } from '@/lib/query/shelters';
 import type { DonationFormValues } from '@/lib/validation/donationSchema';
 
 interface Step1ProjectProps {
@@ -13,6 +15,7 @@ interface Step1ProjectProps {
 
 export function Step1Project({ control }: Step1ProjectProps) {
   const donationType = useWatch({ control, name: 'donationType' });
+  const { data: results } = useShelterResults();
 
   return (
     <Stack gap={40}>
