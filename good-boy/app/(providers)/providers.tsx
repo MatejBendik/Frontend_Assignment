@@ -6,6 +6,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/query/queryClient";
 
 const theme = createTheme({
+  fontFamily: "Inter, sans-serif",
   primaryColor: "violet",
   defaultRadius: "md",
   components: {

@@ -137,49 +137,55 @@ export function DonationWizard() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <Stack gap={40}>
-        <DonationStepper currentStep={step} />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      style={{ display: "flex", flexDirection: "column", flex: 1 }}
+    >
+      <Box style={{ flex: 1 }}>
+        <Stack gap={40}>
+          <DonationStepper currentStep={step} />
 
-        <Transition
-          mounted={mounted}
-          transition="fade"
-          duration={200}
-          timingFunction="ease"
-        >
-          {(styles) => (
-            <Box style={styles}>
-              {step === 0 && <Step1Project control={control} />}
-              {step === 1 && <Step2Personal control={control} />}
-              {step === 2 && (
-                <Step3Confirm control={control} values={getValues()} />
-              )}
-            </Box>
-          )}
-        </Transition>
-
-        {/* Navigation buttons */}
-        <Group justify="space-between">
-          <SecondaryButton
-            onClick={handleBack}
-            disabled={step === 0}
-            style={step === 0 ? { visibility: "hidden" } : undefined}
-            type="button"
+          <Transition
+            mounted={mounted}
+            transition="fade"
+            duration={200}
+            timingFunction="ease"
           >
-            Späť
-          </SecondaryButton>
+            {(styles) => (
+              <Box style={styles}>
+                {step === 0 && <Step1Project control={control} />}
+                {step === 1 && <Step2Personal control={control} />}
+                {step === 2 && (
+                  <Step3Confirm control={control} values={getValues()} />
+                )}
+              </Box>
+            )}
+          </Transition>
+        </Stack>
+      </Box>
 
-          {step < TOTAL_STEPS - 1 ? (
-            <PrimaryButton onClick={handleNext} type="button">
-              Pokračovať
-            </PrimaryButton>
-          ) : (
-            <PrimaryButton type="submit" showArrow={false}>
-              Odoslať formulár
-            </PrimaryButton>
-          )}
-        </Group>
-      </Stack>
+      {/* Navigation buttons — always at bottom */}
+      <Group justify="space-between" mt={40} mb={16}>
+        <SecondaryButton
+          onClick={handleBack}
+          disabled={step === 0}
+          style={step === 0 ? { visibility: "hidden" } : undefined}
+          type="button"
+        >
+          Späť
+        </SecondaryButton>
+
+        {step < TOTAL_STEPS - 1 ? (
+          <PrimaryButton onClick={handleNext} type="button">
+            Pokračovať
+          </PrimaryButton>
+        ) : (
+          <PrimaryButton type="submit" showArrow={false}>
+            Odoslať formulár
+          </PrimaryButton>
+        )}
+      </Group>
     </form>
   );
 }

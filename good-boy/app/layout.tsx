@@ -1,14 +1,17 @@
-import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
-import './globals.css';
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
-import type { Metadata } from 'next';
-import { Providers } from './(providers)/providers';
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import "./globals.css";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { Providers } from "./(providers)/providers";
+
+const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
-  title: 'GoodBoy | Podpora útulkov',
+  title: "GoodBoy | Podpora útulkov",
   description:
-    'Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.',
+    "Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.",
 };
 
 export default function RootLayout({
@@ -21,7 +24,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
