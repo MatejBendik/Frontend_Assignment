@@ -123,6 +123,8 @@ export function PhoneField({ control }: PhoneFieldProps) {
               }
               leftSectionWidth={60}
               aria-label="Telefónne číslo"
+              inputMode="tel"
+              type="tel"
               required
             />
           )}

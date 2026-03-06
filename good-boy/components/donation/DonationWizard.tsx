@@ -85,6 +85,15 @@ export function DonationWizard() {
         contentRef.current.style.minHeight = "";
       }
       setFadeIn(true);
+      // Move focus to the step heading so keyboard/screen-reader users start at the top
+      requestAnimationFrame(() => {
+        const heading =
+          contentRef.current?.querySelector<HTMLElement>("h1, h2, h3");
+        if (heading) {
+          heading.setAttribute("tabindex", "-1");
+          heading.focus();
+        }
+      });
     }, 150);
   };
 

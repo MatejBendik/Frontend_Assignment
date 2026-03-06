@@ -66,6 +66,7 @@ export function Step2Personal({ control }: Step2PersonalProps) {
             label="E-mailová adresa"
             placeholder="Zadajte Váš e-mail"
             type="email"
+            inputMode="email"
             value={field.value}
             onChange={field.onChange}
             onBlur={field.onBlur}
