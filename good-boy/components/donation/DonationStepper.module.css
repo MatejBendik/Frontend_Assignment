@@ -32,8 +32,8 @@
 }
 
 .stepCircleCompleted {
-  background-color: var(--mantine-color-violet-6);
-  color: white;
+  border: 1px solid var(--mantine-color-violet-6);
+  color: var(--mantine-color-violet-6);
 }
 
 .stepCircleInactive {
@@ -76,12 +76,5 @@
   min-width: 12px;
   border-top: 1px solid var(--mantine-color-gray-3);
   transition: border-color 200ms ease;
-}
-
-.connectorActive {
-  border-color: var(--mantine-color-violet-6);
-}
-
-.connectorInactive {
   border-color: var(--mantine-color-gray-3);
 }

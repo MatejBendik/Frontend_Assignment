@@ -69,7 +69,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
         Telefónne číslo{" "}
         <span style={{ color: "var(--mantine-color-red-filled)" }}>*</span>
       </label>
-      <Group gap="xs" align="flex-start" wrap="nowrap">
+      <Group gap="md" align="flex-start" wrap="nowrap">
         <Controller
           name="phoneCountry"
           control={control}
@@ -105,7 +105,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
           control={control}
           render={({ field, fieldState }) => (
             <TextInput
-              placeholder="123 456 789"
+              placeholder="123 321 123"
               value={formatPhoneDisplay(field.value)}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 const digits = e.currentTarget.value
@@ -117,7 +117,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
               error={fieldState.error?.message}
               style={{ flex: 1 }}
               leftSection={
-                <Text size="sm" c="dark" fw={500} pl={4}>
+                <Text size="md" c="black" fw={400} pl={4}>
                   {CODE_MAP[phoneCountry] ?? "+ 421"}
                 </Text>
               }

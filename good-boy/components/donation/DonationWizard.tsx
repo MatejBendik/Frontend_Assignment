@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Group, Box, Stack } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -67,6 +68,7 @@ export function DonationWizard() {
 
   const { control, trigger, handleSubmit, getValues } = form;
   const contribute = useContribute();
+  const isMobile = useMediaQuery("(max-width: 48em)");
 
   const goTo = (next: number) => {
     // Lock content height so layout doesn't shift during transition
@@ -178,22 +180,31 @@ export function DonationWizard() {
       </Box>
 
       {/* Navigation buttons — always at bottom */}
-      <Group justify="space-between" mt={40} mb={16}>
+      <Group justify="space-between" mt={36} mb={36} wrap="nowrap">
         <SecondaryButton
           onClick={handleBack}
           disabled={step === 0}
           style={step === 0 ? { visibility: "hidden" } : undefined}
           type="button"
+          size={isMobile ? "compact-xl" : "xl"}
         >
           Späť
         </SecondaryButton>
 
         {step < TOTAL_STEPS - 1 ? (
-          <PrimaryButton onClick={handleNext} type="button">
+          <PrimaryButton
+            onClick={handleNext}
+            type="button"
+            size={isMobile ? "compact-xl" : "xl"}
+          >
             Pokračovať
           </PrimaryButton>
         ) : (
-          <PrimaryButton type="submit" showArrow={false}>
+          <PrimaryButton
+            type="submit"
+            showArrow={false}
+            size={isMobile ? "compact-xl" : "xl"}
+          >
             Odoslať formulár
           </PrimaryButton>
         )}

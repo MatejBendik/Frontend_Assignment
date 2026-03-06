@@ -49,15 +49,7 @@ export function DonationStepper({ currentStep }: DonationStepperProps) {
             </div>
 
             {/* Connector line between steps */}
-            {index < STEPS.length - 1 && (
-              <div
-                className={`${classes.connector} ${
-                  index < currentStep
-                    ? classes.connectorActive
-                    : classes.connectorInactive
-                }`}
-              />
-            )}
+            {index < STEPS.length - 1 && <div className={classes.connector} />}
           </div>
         );
       })}

@@ -21,6 +21,7 @@ export function ConsentCheckbox({ control }: ConsentCheckboxProps) {
           onBlur={field.onBlur}
           error={fieldState.error?.message}
           size="sm"
+          radius="4px"
           fw={500}
           aria-required
           pt="sm"

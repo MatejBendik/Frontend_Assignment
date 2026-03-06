@@ -38,19 +38,19 @@ export default function KontaktPage() {
         {CONTACT_CARDS.map((card) => (
           <Grid.Col key={card.title} span={{ base: 12, sm: 4 }}>
             <Stack align="center" ta="center" gap="20px">
-              <ThemeIcon variant="light" color="violet" size={48} radius="xl">
+              <ThemeIcon variant="light" color="violet" size={48} radius="10px">
                 <card.icon size={24} />
               </ThemeIcon>
-              <Text fw={700} size="lg">
+              <Text fw={600} size="xl">
                 {card.title}
               </Text>
-              <Text size="sm" c="dimmed">
+              <Text size="md" fw={400} c="dimmed">
                 {card.description}
               </Text>
               <Anchor
                 href={card.href}
                 target={card.href.startsWith("http") ? "_blank" : undefined}
-                size="sm"
+                size="md"
                 c="violet"
                 fw={500}
               >
