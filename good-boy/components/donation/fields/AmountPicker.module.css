@@ -6,23 +6,38 @@
 
 .amountDisplay {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.amountRow {
+  display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
+}
+
+.underline {
+  width: min(146px, 50vw);
+  height: 2px;
+  background: var(--mantine-color-violet-6);
+  margin-top: 4px;
 }
 
 .amountInput {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 60px;
+  font-weight: 400;
   color: var(--mantine-color-dark-7);
   border: none;
   outline: none;
   background: transparent;
   text-align: right;
-  width: min(160px, 40vw);
+  min-width: 1ch;
+  max-width: 6ch;
   padding: 0;
-  border-bottom: 3px solid var(--mantine-color-violet-6);
   line-height: 1.2;
+  caret-color: var(--mantine-color-dark-7);
 
   /* Remove number arrows */
   -moz-appearance: textfield;
@@ -31,12 +46,16 @@
     -webkit-appearance: none;
     margin: 0;
   }
+
+  &::placeholder {
+    color: var(--mantine-color-gray-5);
+  }
 }
 
 .currency {
-  font-size: 32px;
-  font-weight: 500;
-  color: var(--mantine-color-gray-5);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--mantine-color-gray-9);
 }
 
 .presets {
@@ -48,5 +67,6 @@
 
 .presets button {
   min-width: 70px;
+  flex: 1;
   flex-shrink: 0;
 }

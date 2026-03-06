@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Grid, Stack, TextInput, Title, Text } from '@mantine/core';
-import { Controller, type Control } from 'react-hook-form';
-import { PhoneField } from '../fields/PhoneField';
-import type { DonationFormValues } from '@/lib/validation/donationSchema';
+import { Grid, Stack, TextInput, Title, Text } from "@mantine/core";
+import { Controller, type Control } from "react-hook-form";
+import { PhoneField } from "../fields/PhoneField";
+import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
 interface Step2PersonalProps {
   control: Control<DonationFormValues>;
@@ -16,7 +16,7 @@ export function Step2Personal({ control }: Step2PersonalProps) {
         Potrebujeme od Vás zopár informácií
       </Title>
 
-      <Text fw={600} size="sm">
+      <Text fw={600} size="md">
         O vás
       </Text>
 
@@ -34,7 +34,6 @@ export function Step2Personal({ control }: Step2PersonalProps) {
                 onBlur={field.onBlur}
                 error={fieldState.error?.message}
                 maxLength={20}
-                size="md"
               />
             )}
           />
@@ -52,7 +51,6 @@ export function Step2Personal({ control }: Step2PersonalProps) {
                 onBlur={field.onBlur}
                 error={fieldState.error?.message}
                 maxLength={30}
-                size="md"
                 required
               />
             )}
@@ -72,7 +70,6 @@ export function Step2Personal({ control }: Step2PersonalProps) {
             onChange={field.onChange}
             onBlur={field.onBlur}
             error={fieldState.error?.message}
-            size="md"
             required
           />
         )}
