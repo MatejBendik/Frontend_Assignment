@@ -59,14 +59,15 @@
 }
 
 .presets {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 12px;
-  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .presets button {
-  min-width: 70px;
-  flex: 1;
-  flex-shrink: 0;
+  min-width: 0;
 }

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { IconCheck } from '@tabler/icons-react';
-import classes from './DonationStepper.module.css';
+import { IconCheck } from "@tabler/icons-react";
+import classes from "./DonationStepper.module.css";
 
 const STEPS = [
-  { label: 'Výber útulku' },
-  { label: 'Osobné údaje' },
-  { label: 'Potvrdenie' },
+  { label: "Výber útulku" },
+  { label: "Osobné údaje" },
+  { label: "Potvrdenie" },
 ];
 
 interface DonationStepperProps {
@@ -21,7 +21,7 @@ export function DonationStepper({ currentStep }: DonationStepperProps) {
         const isActive = index === currentStep;
 
         return (
-          <div key={step.label} style={{ display: 'contents' }}>
+          <div key={step.label} style={{ display: "contents" }}>
             <div className={classes.step}>
               <div
                 className={`${classes.stepCircle} ${
@@ -31,15 +31,17 @@ export function DonationStepper({ currentStep }: DonationStepperProps) {
                       ? classes.stepCircleActive
                       : classes.stepCircleInactive
                 }`}
-                aria-current={isActive ? 'step' : undefined}
+                aria-current={isActive ? "step" : undefined}
               >
                 {isCompleted ? <IconCheck size={16} /> : index + 1}
               </div>
               <span
                 className={`${classes.stepLabel} ${
-                  isActive || isCompleted
-                    ? classes.stepLabelActive
-                    : classes.stepLabelInactive
+                  isActive
+                    ? `${classes.stepLabelActive} ${classes.stepLabelCurrent}`
+                    : isCompleted
+                      ? classes.stepLabelActive
+                      : classes.stepLabelInactive
                 }`}
               >
                 {step.label}

@@ -57,10 +57,13 @@ export function AmountPicker({ control }: AmountPickerProps) {
                   size="lg"
                   radius={12}
                   styles={{
-                    root: { fontSize: 16, fontWeight: 500 },
+                    root: {
+                      fontSize: 16,
+                      fontWeight: 500,
+                    },
                   }}
-                  variant={field.value === preset ? "filled" : "outline"}
-                  color={field.value === preset ? "violet" : "gray.3"}
+                  variant="filled"
+                  color={field.value === preset ? "violet" : "gray.1.5"}
                   c={field.value === preset ? "white" : "dark"}
                   onClick={() => {
                     field.onChange(preset);

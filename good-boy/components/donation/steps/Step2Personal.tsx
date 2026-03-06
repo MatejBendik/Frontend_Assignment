@@ -12,7 +12,7 @@ interface Step2PersonalProps {
 export function Step2Personal({ control }: Step2PersonalProps) {
   return (
     <Stack gap="lg">
-      <Title order={2} fw={800} size="h1">
+      <Title order={2} fw={700} size="48px">
         Potrebujeme od Vás zopár informácií
       </Title>
 

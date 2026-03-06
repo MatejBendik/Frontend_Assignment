@@ -28,7 +28,7 @@ export function DonationLayoutShell({
           flexDirection: "column",
         }}
       >
-        {/* Scrollable content area */}
+        {/* Content area */}
         <Box
           pt={{ base: 24, md: 48 }}
           px={{ base: 24, md: 48 }}
@@ -38,7 +38,7 @@ export function DonationLayoutShell({
         </Box>
 
         {/* Footer — always pinned at bottom */}
-        <Box px={{ base: 24, md: 48 }} pb={{ base: 24, md: 32 }}>
+        <Box px={{ base: 24, md: 48 }}>
           <FooterLinks showSocial={step === 0} />
         </Box>
       </Paper>

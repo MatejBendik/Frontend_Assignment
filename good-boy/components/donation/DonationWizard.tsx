@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Group, Transition, Box, Stack } from "@mantine/core";
+import { useEffect, useState, useRef } from "react";
+import { Group, Box, Stack } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,7 +30,8 @@ export function DonationWizard() {
     reset: resetStore,
   } = useDonationStore();
   const [step, setStep] = useState(persistedStep);
-  const [mounted, setMounted] = useState(true);
+  const [fadeIn, setFadeIn] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<DonationFormValues>({
     resolver: zodResolver(donationSchema),
@@ -68,11 +69,20 @@ export function DonationWizard() {
   const contribute = useContribute();
 
   const goTo = (next: number) => {
-    setMounted(false);
+    // Lock content height so layout doesn't shift during transition
+    if (contentRef.current) {
+      contentRef.current.style.minHeight = `${contentRef.current.offsetHeight}px`;
+    }
+    setFadeIn(false);
     setTimeout(() => {
       setStep(next);
       setPersistedStep(next);
-      setMounted(true);
+      window.scrollTo({ top: 0 });
+      // Release locked height after step change
+      if (contentRef.current) {
+        contentRef.current.style.minHeight = "";
+      }
+      setFadeIn(true);
     }, 150);
   };
 
@@ -140,28 +150,30 @@ export function DonationWizard() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      style={{ display: "flex", flexDirection: "column", flex: 1 }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        minHeight: 0,
+      }}
     >
       <Box style={{ flex: 1 }}>
         <Stack gap={40}>
           <DonationStepper currentStep={step} />
 
-          <Transition
-            mounted={mounted}
-            transition="fade"
-            duration={200}
-            timingFunction="ease"
+          <Box
+            ref={contentRef}
+            style={{
+              opacity: fadeIn ? 1 : 0,
+              transition: "opacity 200ms ease",
+            }}
           >
-            {(styles) => (
-              <Box style={styles}>
-                {step === 0 && <Step1Project control={control} />}
-                {step === 1 && <Step2Personal control={control} />}
-                {step === 2 && (
-                  <Step3Confirm control={control} values={getValues()} />
-                )}
-              </Box>
+            {step === 0 && <Step1Project control={control} />}
+            {step === 1 && <Step2Personal control={control} />}
+            {step === 2 && (
+              <Step3Confirm control={control} values={getValues()} />
             )}
-          </Transition>
+          </Box>
         </Stack>
       </Box>
 
