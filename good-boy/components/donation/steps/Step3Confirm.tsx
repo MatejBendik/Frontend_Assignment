@@ -36,11 +36,17 @@ export function Step3Confirm({ control, values }: Step3ConfirmProps) {
       "—")
     : "—";
   const fullName = [firstName, lastName].filter(Boolean).join(" ") || "—";
-  const fullPhone = phoneNumber ? `${phoneCountry} ${phoneNumber}` : "—";
+  const formattedPhone = phoneNumber
+    ? phoneNumber
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(?=\d)/g, "$1 ")
+        .trim()
+    : "";
+  const fullPhone = formattedPhone ? `${phoneCountry} ${formattedPhone}` : "—";
 
   return (
     <Stack gap="lg">
-      <Title order={2} fw={800} size="h1">
+      <Title order={2} fw={700} size="48px">
         Skontrolujte si zadané údaje
       </Title>
 

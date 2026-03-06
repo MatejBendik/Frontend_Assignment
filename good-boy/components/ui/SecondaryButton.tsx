@@ -20,8 +20,15 @@ export function SecondaryButton({
     <Button
       size="xl"
       radius="md"
-      variant="default"
-      style={{ fontSize: "16px", fontWeight: 500, ...style }}
+      variant="filled"
+      color="gray.1"
+      c="dark"
+      style={{
+        fontSize: "16px",
+        fontWeight: 500,
+        border: "none",
+        ...style,
+      }}
       leftSection={showArrow ? <IconArrowLeft size={18} /> : undefined}
       {...props}
     >

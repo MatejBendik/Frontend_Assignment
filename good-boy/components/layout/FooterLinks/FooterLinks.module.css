@@ -33,7 +33,7 @@
 
 .social {
   display: flex;
-  gap: var(--mantine-spacing-xs);
+  gap: var(--mantine-spacing-md);
 
   @media (max-width: $mantine-breakpoint-xs) {
     display: none;

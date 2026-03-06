@@ -20,7 +20,8 @@ export function ConsentCheckbox({ control }: ConsentCheckboxProps) {
           onChange={(e) => field.onChange(e.currentTarget.checked)}
           onBlur={field.onBlur}
           error={fieldState.error?.message}
-          size="md"
+          size="sm"
+          fw={500}
           aria-required
           pt="sm"
         />
