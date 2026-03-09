@@ -9,6 +9,7 @@ import {
   type ComboboxLikeRenderOptionInput,
 } from "@mantine/core";
 import { Controller, useWatch, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import type { DonationFormValues } from "@/lib/validation/donationSchema";
 import type { ChangeEvent } from "react";
 
@@ -54,6 +55,7 @@ interface PhoneFieldProps {
 }
 
 export function PhoneField({ control }: PhoneFieldProps) {
+  const { t } = useTranslation();
   const phoneCountry = useWatch({ control, name: "phoneCountry" });
 
   return (
@@ -66,7 +68,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
           marginBottom: 4,
         }}
       >
-        Telefónne číslo{" "}
+        {t("step2.phoneNumber")}{" "}
         <span style={{ color: "var(--mantine-color-red-filled)" }}>*</span>
       </label>
       <Group gap="md" align="flex-start" wrap="nowrap">
@@ -81,7 +83,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
               onBlur={field.onBlur}
               w={80}
               allowDeselect={false}
-              aria-label="Predvoľba krajiny"
+              aria-label={t("step2.phoneCountryAriaLabel")}
               renderOption={renderCountryOption}
               leftSection={
                 <Image
@@ -122,7 +124,7 @@ export function PhoneField({ control }: PhoneFieldProps) {
                 </Text>
               }
               leftSectionWidth={60}
-              aria-label="Telefónne číslo"
+              aria-label={t("step2.phoneNumber")}
               inputMode="tel"
               type="tel"
               required

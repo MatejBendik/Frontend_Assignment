@@ -2,6 +2,7 @@
 
 import { SegmentedControl } from "@mantine/core";
 import { Controller, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
 export type DonationType = "shelter" | "foundation";
@@ -11,6 +12,8 @@ interface DonationTypeToggleProps {
 }
 
 export function DonationTypeToggle({ control }: DonationTypeToggleProps) {
+  const { t } = useTranslation();
+
   return (
     <Controller
       name="donationType"
@@ -24,8 +27,8 @@ export function DonationTypeToggle({ control }: DonationTypeToggleProps) {
           radius="12px"
           color="violet"
           data={[
-            { label: "Prispieť konkrétnemu útulku", value: "shelter" },
-            { label: "Prispieť celej nadácii", value: "foundation" },
+            { label: t("step1.donateToShelter"), value: "shelter" },
+            { label: t("step1.donateToFoundation"), value: "foundation" },
           ]}
           styles={{
             root: {

@@ -2,6 +2,7 @@
 
 import { Select } from "@mantine/core";
 import { Controller, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useShelters } from "@/lib/query/shelters";
 import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
@@ -14,6 +15,7 @@ export function ShelterSelect({
   control,
   required = false,
 }: ShelterSelectProps) {
+  const { t } = useTranslation();
   const { data, isLoading } = useShelters();
 
   const shelterOptions = (data?.shelters ?? []).map((s) => ({
@@ -27,8 +29,8 @@ export function ShelterSelect({
       control={control}
       render={({ field, fieldState }) => (
         <Select
-          label={`Útulok${!required ? " (Nepovinné)" : ""}`}
-          placeholder="Vyberte útulok zo zoznamu"
+          label={`${t("step1.shelterLabel")}${!required ? t("step1.shelterOptionalSuffix") : ""}`}
+          placeholder={t("step1.shelterPlaceholder")}
           data={shelterOptions}
           value={field.value}
           onChange={field.onChange}
@@ -38,7 +40,7 @@ export function ShelterSelect({
           searchable
           required={required}
           disabled={isLoading}
-          aria-label="Vyberte útulok"
+          aria-label={t("step1.shelterAriaLabel")}
         />
       )}
     />

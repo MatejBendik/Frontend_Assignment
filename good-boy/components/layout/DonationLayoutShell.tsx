@@ -3,12 +3,14 @@
 import { Box, Container, Paper } from "@mantine/core";
 import { FooterLinks } from "./FooterLinks";
 import { useDonationStore } from "@/store/donationStore";
+import { useTranslation } from "@/lib/i18n/client";
 
 export function DonationLayoutShell({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   const step = useDonationStore((s) => s.step);
 
   return (
@@ -59,7 +61,7 @@ export function DonationLayoutShell({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/donation-dog.jpg"
-          alt="Pes na pláži"
+          alt={t("images.donationDogAlt")}
           style={{
             position: "absolute",
             inset: 0,

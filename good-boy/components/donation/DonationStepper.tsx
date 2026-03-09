@@ -1,21 +1,24 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { CheckIcon } from "@/components/icons/CheckIcon";
 import classes from "./DonationStepper.module.css";
-
-const STEPS = [
-  { label: "Výber útulku" },
-  { label: "Osobné údaje" },
-  { label: "Potvrdenie" },
-];
 
 interface DonationStepperProps {
   currentStep: number;
 }
 
 export function DonationStepper({ currentStep }: DonationStepperProps) {
+  const { t } = useTranslation();
+
+  const STEPS = [
+    { label: t("stepper.shelterSelection") },
+    { label: t("stepper.personalData") },
+    { label: t("stepper.confirmation") },
+  ];
+
   return (
-    <nav className={classes.stepper} aria-label="Kroky formulára">
+    <nav className={classes.stepper} aria-label={t("stepper.ariaLabel")}>
       {STEPS.map((step, index) => {
         const isCompleted = index < currentStep;
         const isActive = index === currentStep;

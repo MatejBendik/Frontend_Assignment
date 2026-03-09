@@ -39,3 +39,20 @@
     display: none;
   }
 }
+
+.langToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: var(--mantine-radius-sm);
+  border: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+  transition: border-color 150ms ease, color 150ms ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--mantine-color-violet-5);
+    color: var(--mantine-color-violet-5);
+  }
+}

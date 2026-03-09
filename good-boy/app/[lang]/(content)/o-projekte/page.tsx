@@ -3,23 +3,21 @@
 import { Divider, Grid, Skeleton, Stack, Text } from "@mantine/core";
 import { ContentPageHeader } from "@/components/layout/ContentPageHeader";
 import { useShelterResults } from "@/lib/query/shelters";
+import { useTranslation } from "@/lib/i18n/client";
 
 export default function OProjektePage() {
+  const { t, i18n } = useTranslation();
   const { data, isLoading } = useShelterResults();
+
+  const numberLocale = i18n.language === "sk" ? "sk-SK" : "en-US";
 
   return (
     <Stack gap="xl">
-      <ContentPageHeader title="O projekte" />
+      <ContentPageHeader title={t("about.title")} />
 
       {/* Description */}
       <Text size="md" fw={400} lh={1.7}>
-        Nadácia Good Boy sa venuje zlepšovaniu života psov v Žiline na
-        Slovensku. Zachraňujeme opustené, týrané a bezdomovské psy, poskytujeme
-        im lekársku starostlivosť, útočisko a lásku, ktorú si zaslúžia. Naším
-        poslaním je dať týmto verným spoločníkom druhú šancu na život tým, že im
-        nájdeme milujúci domov. Okrem záchrany a rehabilitácie sa zameriavame aj
-        na podporu zodpovedného vlastníctva zvierat a ochrany zvierat
-        prostredníctvom vzdelávacích a komunitných programov.
+        {t("about.description1")}
       </Text>
 
       <Divider />
@@ -37,11 +35,11 @@ export default function OProjektePage() {
                 c="violet"
                 style={{ fontSize: 60, lineHeight: 1.1 }}
               >
-                {data?.contribution.toLocaleString("sk-SK")} €
+                {data?.contribution.toLocaleString(numberLocale)} €
               </Text>
             )}
             <Text size="18px" c="dark" fw={500}>
-              Celková vyzbieraná hodnota
+              {t("about.totalRaised")}
             </Text>
           </Stack>
         </Grid.Col>
@@ -56,11 +54,11 @@ export default function OProjektePage() {
                 c="violet"
                 style={{ fontSize: 60, lineHeight: 1.1 }}
               >
-                {data?.contributors.toLocaleString("sk-SK")}
+                {data?.contributors.toLocaleString(numberLocale)}
               </Text>
             )}
             <Text size="18px" c="dark" fw={500}>
-              Počet darcov
+              {t("about.donorCount")}
             </Text>
           </Stack>
         </Grid.Col>
@@ -70,14 +68,7 @@ export default function OProjektePage() {
 
       {/* Additional text */}
       <Text size="md" fw={400} lh={1.7}>
-        Naša práca je možná vďaka podpore vášnivých dobrovoľníkov, štedrých
-        darcov a komunity, ktorá sa hlboko stará o dobro zvierat. Organizujeme
-        aj kastračné a sterilizačné iniciatívy, aby sme riešili problém túlavých
-        psov a zabezpečili dlhodobý vplyv. V nadácii Good Boy veríme, že každý
-        pes si zaslúži bezpečný, milujúci domov a šťastný život. Pridajte sa k
-        nám a pomôžte nám robiť zmeny – či už dobrovoľníctvom, darovaním alebo
-        adopciou chlpatého priateľa. Spoločne môžeme vytvoriť lepšiu budúcnosť
-        pre psy v Žiline.
+        {t("about.description2")}
       </Text>
     </Stack>
   );

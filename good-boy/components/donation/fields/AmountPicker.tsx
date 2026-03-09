@@ -3,6 +3,7 @@
 import { Button, Text } from "@mantine/core";
 import { useRef } from "react";
 import { Controller, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import type { DonationFormValues } from "@/lib/validation/donationSchema";
 import classes from "./AmountPicker.module.css";
 
@@ -13,6 +14,7 @@ interface AmountPickerProps {
 }
 
 export function AmountPicker({ control }: AmountPickerProps) {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -42,7 +44,7 @@ export function AmountPicker({ control }: AmountPickerProps) {
                   onBlur={field.onBlur}
                   placeholder="0"
                   style={{ width: `${charCount}ch` }}
-                  aria-label="Suma príspevku v eurách"
+                  aria-label={t("step1.amountAriaLabel")}
                   data-error={fieldState.error ? "" : undefined}
                 />
                 <span className={classes.currency}>€</span>

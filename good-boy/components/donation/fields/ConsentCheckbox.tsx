@@ -2,6 +2,7 @@
 
 import { Checkbox } from "@mantine/core";
 import { Controller, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import type { DonationFormValues } from "@/lib/validation/donationSchema";
 
 interface ConsentCheckboxProps {
@@ -9,13 +10,15 @@ interface ConsentCheckboxProps {
 }
 
 export function ConsentCheckbox({ control }: ConsentCheckboxProps) {
+  const { t } = useTranslation();
+
   return (
     <Controller
       name="consent"
       control={control}
       render={({ field, fieldState }) => (
         <Checkbox
-          label="Súhlasím so spracovaním mojich osobných údajov"
+          label={t("step3.consentLabel")}
           checked={!!field.value}
           onChange={(e) => field.onChange(e.currentTarget.checked)}
           onBlur={field.onBlur}

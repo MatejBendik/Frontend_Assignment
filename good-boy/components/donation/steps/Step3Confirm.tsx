@@ -1,6 +1,7 @@
 "use client";
 
 import { Divider, Stack, Text, Title } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { ConsentCheckbox } from "../fields/ConsentCheckbox";
 import { SummaryRow } from "../summary/SummaryRow";
 import { useShelters } from "@/lib/query/shelters";
@@ -13,6 +14,7 @@ interface Step3ConfirmProps {
 }
 
 export function Step3Confirm({ control, values }: Step3ConfirmProps) {
+  const { t } = useTranslation();
   const {
     donationType,
     shelterId,
@@ -28,8 +30,8 @@ export function Step3Confirm({ control, values }: Step3ConfirmProps) {
 
   const formattedType =
     donationType === "foundation"
-      ? "Finančný príspevok celej nadácii"
-      : "Príspevok konkrétnemu útulku";
+      ? t("step3.foundationContribution")
+      : t("step3.shelterContribution");
 
   const shelterLabel = shelterId
     ? (sheltersData?.shelters.find((s) => String(s.id) === shelterId)?.name ??
@@ -47,26 +49,26 @@ export function Step3Confirm({ control, values }: Step3ConfirmProps) {
   return (
     <Stack gap="lg">
       <Title order={2} fw={700} size="48px">
-        Skontrolujte si zadané údaje
+        {t("step3.title")}
       </Title>
 
       {/* Donation summary */}
       <div>
         <Text fw={700} mb="xs">
-          Zhrnutie
+          {t("step3.summary")}
         </Text>
-        <SummaryRow label="Forma pomoci" value={formattedType} />
-        <SummaryRow label="Útulok" value={shelterLabel} />
-        <SummaryRow label="Suma príspevku" value={`${amount} €`} />
+        <SummaryRow label={t("step3.helpType")} value={formattedType} />
+        <SummaryRow label={t("step3.shelter")} value={shelterLabel} />
+        <SummaryRow label={t("step3.amount")} value={`${amount} €`} />
       </div>
 
       <Divider size="xs" />
 
       {/* Personal details summary */}
       <div>
-        <SummaryRow label="Meno a priezvisko" value={fullName} />
-        <SummaryRow label="E-mail" value={email || "—"} />
-        <SummaryRow label="Telefónne číslo" value={fullPhone} />
+        <SummaryRow label={t("step3.fullName")} value={fullName} />
+        <SummaryRow label={t("step3.email")} value={email || "—"} />
+        <SummaryRow label={t("step3.phone")} value={fullPhone} />
       </div>
 
       <Divider size="xs" />

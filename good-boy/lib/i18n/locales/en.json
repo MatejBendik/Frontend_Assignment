@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "siteTitle": "GoodBoy | Dog Shelter Support",
+    "siteDescription": "Support Slovak dog shelters through a simple donation form.",
+    "donateTitle": "Donate",
+    "donateDescription": "Donate to dog shelters in Slovakia – choose a shelter, enter your details, and support a good cause.",
+    "contactTitle": "Contact",
+    "contactDescription": "Contact the GoodBoy foundation – email, phone, and office address in Žilina.",
+    "aboutTitle": "About the Project",
+    "aboutDescription": "The GoodBoy foundation rescues abandoned dogs in Žilina. Read about our mission, results, and how you can help."
+  },
+  "nav": {
+    "back": "Back",
+    "continue": "Continue",
+    "submitForm": "Submit form",
+    "contact": "Contact",
+    "aboutProject": "About the Project"
+  },
+  "stepper": {
+    "shelterSelection": "Shelter selection",
+    "personalData": "Personal data",
+    "confirmation": "Confirmation",
+    "ariaLabel": "Form steps"
+  },
+  "stepTitles": {
+    "step1": "Select shelter | GoodBoy",
+    "step2": "Personal data | GoodBoy",
+    "step3": "Contribution summary | GoodBoy"
+  },
+  "step1": {
+    "title": "Choose how you want to help",
+    "aboutProject": "About the project",
+    "amountLabel": "Amount I want to contribute",
+    "donateToShelter": "Contribute to a specific shelter",
+    "donateToFoundation": "Contribute to the whole foundation",
+    "shelterLabel": "Shelter",
+    "shelterOptionalSuffix": " (Optional)",
+    "shelterPlaceholder": "Select a shelter from the list",
+    "shelterAriaLabel": "Select a shelter",
+    "amountAriaLabel": "Contribution amount in euros"
+  },
+  "step2": {
+    "title": "We need a few details from you",
+    "aboutYou": "About you",
+    "firstName": "First name",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Enter your last name",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "phoneNumber": "Phone number",
+    "phoneCountryAriaLabel": "Country calling code"
+  },
+  "step3": {
+    "title": "Review your information",
+    "summary": "Summary",
+    "helpType": "Type of help",
+    "shelter": "Shelter",
+    "amount": "Contribution amount",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone number",
+    "consentLabel": "I consent to the processing of my personal data",
+    "foundationContribution": "Financial contribution to the whole foundation",
+    "shelterContribution": "Contribution to a specific shelter"
+  },
+  "notifications": {
+    "successTitle": "Thank you!",
+    "successFallback": "Your contribution has been recorded successfully",
+    "errorTitle": "Error",
+    "errorMessage": "Failed to submit your contribution. Please try again."
+  },
+  "validation": {
+    "amountMin": "Amount must be at least €1",
+    "firstNameMin": "First name must have at least 2 characters",
+    "firstNameMax": "First name may have at most 20 characters",
+    "lastNameMin": "Last name must have at least 2 characters",
+    "lastNameMax": "Last name may have at most 30 characters",
+    "emailInvalid": "Enter a valid email address",
+    "phoneRequired": "Enter a phone number",
+    "phoneInvalid": "Enter a valid phone number",
+    "consentRequired": "You must consent to data processing",
+    "shelterRequired": "Select a shelter from the list"
+  },
+  "contact": {
+    "title": "Contact",
+    "emailTitle": "Email",
+    "emailDesc": "Our friendly team is here to help.",
+    "emailValue": "hello@goodrequest.com",
+    "officeTitle": "Office",
+    "officeDesc": "Come say hello at our office HQ.",
+    "officeAddress": "Obchodná 3D, 010 08 Žilina, Slovakia",
+    "phoneTitle": "Phone",
+    "phoneDesc": "Mon–Fri from 8am to 5pm.",
+    "phoneValue": "+421 911 750 750",
+    "imageAlt": "Dog on the beach"
+  },
+  "about": {
+    "title": "About the Project",
+    "description1": "The Good Boy Foundation is dedicated to improving the lives of dogs in Žilina, Slovakia. We rescue abandoned, abused, and homeless dogs, providing them with medical care, shelter, and the love they deserve. Our mission is to give these loyal companions a second chance at life by finding them loving homes. In addition to rescue and rehabilitation, we also focus on promoting responsible pet ownership and animal welfare through educational and community programs.",
+    "totalRaised": "Total amount raised",
+    "donorCount": "Number of donors",
+    "description2": "Our work is made possible by the support of passionate volunteers, generous donors, and a community that deeply cares about animal welfare. We also organize spay and neuter initiatives to address the stray dog problem and ensure long-term impact. At the Good Boy Foundation, we believe every dog deserves a safe, loving home and a happy life. Join us and help us make a difference – whether through volunteering, donating, or adopting a furry friend. Together, we can create a better future for dogs in Žilina."
+  },
+  "footer": {
+    "logoAlt": "Good Boy logo"
+  },
+  "images": {
+    "donationDogAlt": "Dog on the beach"
+  }
+}

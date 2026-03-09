@@ -4,6 +4,8 @@ import { MantineProvider, createTheme, Input } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/query/queryClient";
+import { TranslationsProvider } from "@/lib/i18n/client";
+import type { Locale } from "@/lib/i18n/settings";
 
 const theme = createTheme({
   fontFamily: "Inter, sans-serif",
@@ -41,12 +43,20 @@ const theme = createTheme({
   },
 });
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  lang,
+  children,
+}: {
+  lang: Locale;
+  children: React.ReactNode;
+}) {
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme}>
-        <Notifications position="bottom-right" />
-        {children}
+        <TranslationsProvider lang={lang}>
+          <Notifications position="bottom-right" />
+          {children}
+        </TranslationsProvider>
       </MantineProvider>
     </QueryClientProvider>
   );

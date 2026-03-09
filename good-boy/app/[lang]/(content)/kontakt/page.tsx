@@ -1,39 +1,42 @@
 "use client";
 
 import { Anchor, Grid, Image, Stack, Text, ThemeIcon } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { MailIcon } from "@/components/icons/MailIcon";
 import { MarkerPinIcon } from "@/components/icons/MarkerPinIcon";
 import { PhoneIcon } from "@/components/icons/PhoneIcon";
 import { ContentPageHeader } from "@/components/layout/ContentPageHeader";
 
-const CONTACT_CARDS = [
-  {
-    icon: MailIcon,
-    title: "Email",
-    description: "Our friendly team is here to help.",
-    value: "hello@goodrequest.com",
-    href: "mailto:hello@goodrequest.com",
-  },
-  {
-    icon: MarkerPinIcon,
-    title: "Office",
-    description: "Come say hello at our office HQ.",
-    value: "Obchodná 3D, 010 08 Žilina, Slovakia",
-    href: "https://maps.google.com/?q=Obchodná+3D+Žilina",
-  },
-  {
-    icon: PhoneIcon,
-    title: "Phone",
-    description: "Mon-Fri from 8am to 5pm.",
-    value: "+421 911 750 750",
-    href: "tel:+421911750750",
-  },
-];
-
 export default function KontaktPage() {
+  const { t } = useTranslation();
+
+  const CONTACT_CARDS = [
+    {
+      icon: MailIcon,
+      title: t("contact.emailTitle"),
+      description: t("contact.emailDesc"),
+      value: t("contact.emailValue"),
+      href: "mailto:hello@goodrequest.com",
+    },
+    {
+      icon: MarkerPinIcon,
+      title: t("contact.officeTitle"),
+      description: t("contact.officeDesc"),
+      value: t("contact.officeAddress"),
+      href: "https://maps.google.com/?q=Obchodná+3D+Žilina",
+    },
+    {
+      icon: PhoneIcon,
+      title: t("contact.phoneTitle"),
+      description: t("contact.phoneDesc"),
+      value: t("contact.phoneValue"),
+      href: "tel:+421911750750",
+    },
+  ];
+
   return (
     <Stack gap="lg">
-      <ContentPageHeader title="Kontakt" />
+      <ContentPageHeader title={t("contact.title")} />
 
       {/* Contact cards */}
       <Grid gutter="xl" mt="md">
@@ -66,7 +69,7 @@ export default function KontaktPage() {
       {/* Hero image */}
       <Image
         src="/images/kontakt-dog.jpg"
-        alt="Pes na pláži"
+        alt={t("contact.imageAlt")}
         radius="20px"
         h={{ base: 260, sm: 400 }}
         fit="cover"

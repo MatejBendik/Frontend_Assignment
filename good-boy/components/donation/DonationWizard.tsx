@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { Group, Box, Stack } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 import { DonationStepper } from "./DonationStepper";
 import { Step1Project } from "./steps/Step1Project";
 import { Step2Personal } from "./steps/Step2Personal";
@@ -15,20 +16,17 @@ import { SecondaryButton } from "@/components/ui/SecondaryButton";
 import { useContribute } from "@/lib/query/shelters";
 import { useDonationStore, INITIAL_FORM_VALUES } from "@/store/donationStore";
 import {
-  donationSchema,
+  createDonationSchema,
   STEP_FIELDS,
   type DonationFormValues,
 } from "@/lib/validation/donationSchema";
 
 const TOTAL_STEPS = 3;
 
-const STEP_TITLES = [
-  "Vyberte útulok | GoodBoy",
-  "Osobné údaje | GoodBoy",
-  "Súhrn príspevku | GoodBoy",
-];
-
 export function DonationWizard() {
+  const { t } = useTranslation();
+  const donationSchema = useMemo(() => createDonationSchema(t), [t]);
+
   const {
     formValues,
     step: persistedStep,
@@ -57,8 +55,13 @@ export function DonationWizard() {
 
   // Update document title per step
   useEffect(() => {
-    document.title = STEP_TITLES[step] ?? STEP_TITLES[0];
-  }, [step]);
+    const titles = [
+      t("stepTitles.step1"),
+      t("stepTitles.step2"),
+      t("stepTitles.step3"),
+    ];
+    document.title = titles[step] ?? titles[0];
+  }, [step, t]);
 
   // Restore persisted values after Zustand hydration
   useEffect(() => {
@@ -115,7 +118,9 @@ export function DonationWizard() {
     if (step === 0) {
       const { donationType, shelterId } = getValues();
       if (donationType === "shelter" && (!shelterId || shelterId === "")) {
-        form.setError("shelterId", { message: "Vyberte útulok zo zoznamu" });
+        form.setError("shelterId", {
+          message: t("validation.shelterRequired"),
+        });
         return;
       }
     }
@@ -148,9 +153,9 @@ export function DonationWizard() {
     contribute.mutate(payload, {
       onSuccess: (res) => {
         const msg =
-          res.messages?.[0]?.message ?? "Príspevok bol úspešne zaznamenaný";
+          res.messages?.[0]?.message ?? t("notifications.successFallback");
         notifications.show({
-          title: "Ďakujeme!",
+          title: t("notifications.successTitle"),
           message: msg,
           color: "green",
         });
@@ -160,8 +165,8 @@ export function DonationWizard() {
       },
       onError: () => {
         notifications.show({
-          title: "Chyba",
-          message: "Nepodarilo sa odoslať príspevok. Skúste to znova.",
+          title: t("notifications.errorTitle"),
+          message: t("notifications.errorMessage"),
           color: "red",
         });
       },
@@ -208,7 +213,7 @@ export function DonationWizard() {
           type="button"
           size={isMobile ? "compact-xl" : "xl"}
         >
-          Späť
+          {t("nav.back")}
         </SecondaryButton>
 
         {step < TOTAL_STEPS - 1 ? (
@@ -217,7 +222,7 @@ export function DonationWizard() {
             type="button"
             size={isMobile ? "compact-xl" : "xl"}
           >
-            Pokračovať
+            {t("nav.continue")}
           </PrimaryButton>
         ) : (
           <PrimaryButton
@@ -225,7 +230,7 @@ export function DonationWizard() {
             showArrow={false}
             size={isMobile ? "compact-xl" : "xl"}
           >
-            Odoslať formulár
+            {t("nav.submitForm")}
           </PrimaryButton>
         )}
       </Group>
