@@ -1,7 +1,7 @@
 "use client";
 
 import { Anchor, Group, Title, Stack, Text } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { ArrowNarrowLeft } from "@/components/icons/ArrowNarrowLeft";
 import Link from "next/link";
 
 interface ContentPageHeaderProps {
@@ -13,7 +13,7 @@ export function ContentPageHeader({ title }: ContentPageHeaderProps) {
     <Stack gap="md">
       <Anchor component={Link} href="/" size="sm" c="violet" underline="never">
         <Group gap={4}>
-          <IconArrowLeft size={20} />
+          <ArrowNarrowLeft size={20} />
           <Text fw={500} size="md">
             Späť
           </Text>

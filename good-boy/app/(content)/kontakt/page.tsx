@@ -1,26 +1,28 @@
 "use client";
 
 import { Anchor, Grid, Image, Stack, Text, ThemeIcon } from "@mantine/core";
-import { IconMail, IconMapPin, IconPhone } from "@tabler/icons-react";
+import { MailIcon } from "@/components/icons/MailIcon";
+import { MarkerPinIcon } from "@/components/icons/MarkerPinIcon";
+import { PhoneIcon } from "@/components/icons/PhoneIcon";
 import { ContentPageHeader } from "@/components/layout/ContentPageHeader";
 
 const CONTACT_CARDS = [
   {
-    icon: IconMail,
+    icon: MailIcon,
     title: "Email",
     description: "Our friendly team is here to help.",
     value: "hello@goodrequest.com",
     href: "mailto:hello@goodrequest.com",
   },
   {
-    icon: IconMapPin,
+    icon: MarkerPinIcon,
     title: "Office",
     description: "Come say hello at our office HQ.",
     value: "Obchodná 3D, 010 08 Žilina, Slovakia",
     href: "https://maps.google.com/?q=Obchodná+3D+Žilina",
   },
   {
-    icon: IconPhone,
+    icon: PhoneIcon,
     title: "Phone",
     description: "Mon-Fri from 8am to 5pm.",
     value: "+421 911 750 750",

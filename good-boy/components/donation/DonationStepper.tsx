@@ -1,6 +1,6 @@
 "use client";
 
-import { IconCheck } from "@tabler/icons-react";
+import { CheckIcon } from "@/components/icons/CheckIcon";
 import classes from "./DonationStepper.module.css";
 
 const STEPS = [
@@ -33,7 +33,7 @@ export function DonationStepper({ currentStep }: DonationStepperProps) {
                 }`}
                 aria-current={isActive ? "step" : undefined}
               >
-                {isCompleted ? <IconCheck size={16} /> : index + 1}
+                {isCompleted ? <CheckIcon size={16} /> : index + 1}
               </div>
               <span
                 className={`${classes.stepLabel} ${

@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { ArrowNarrowLeft } from "@/components/icons/ArrowNarrowLeft";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 interface SecondaryButtonProps
@@ -29,7 +29,7 @@ export function SecondaryButton({
         border: "none",
         ...style,
       }}
-      leftSection={showArrow ? <IconArrowLeft size={18} /> : undefined}
+      leftSection={showArrow ? <ArrowNarrowLeft size={18} /> : undefined}
       {...props}
     >
       {children}

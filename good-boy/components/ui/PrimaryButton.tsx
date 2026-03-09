@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from "@mantine/core";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowNarrowRight } from "@/components/icons/ArrowNarrowRight";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 interface PrimaryButtonProps
@@ -20,7 +20,7 @@ export function PrimaryButton({
       size="xl"
       radius="md"
       style={{ fontSize: "16px", fontWeight: 500 }}
-      rightSection={showArrow ? <IconArrowRight size={18} /> : undefined}
+      rightSection={showArrow ? <ArrowNarrowRight size={18} /> : undefined}
       {...props}
     >
       {children}

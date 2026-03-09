@@ -1,7 +1,6 @@
 "use client";
 
 import { Group, Stack, Text, Title } from "@mantine/core";
-import { IconHeart, IconUsers } from "@tabler/icons-react";
 import { useWatch, type Control } from "react-hook-form";
 import { DonationTypeToggle } from "../fields/DonationTypeToggle";
 import { ShelterSelect } from "../fields/ShelterSelect";
