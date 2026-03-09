@@ -22,6 +22,12 @@ import {
 
 const TOTAL_STEPS = 3;
 
+const STEP_TITLES = [
+  "Vyberte útulok | GoodBoy",
+  "Osobné údaje | GoodBoy",
+  "Súhrn príspevku | GoodBoy",
+];
+
 export function DonationWizard() {
   const {
     formValues,
@@ -48,6 +54,11 @@ export function DonationWizard() {
     });
     return () => subscription.unsubscribe();
   }, [form, setFormValues]);
+
+  // Update document title per step
+  useEffect(() => {
+    document.title = STEP_TITLES[step] ?? STEP_TITLES[0];
+  }, [step]);
 
   // Restore persisted values after Zustand hydration
   useEffect(() => {

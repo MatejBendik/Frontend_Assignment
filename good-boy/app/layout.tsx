@@ -8,10 +8,32 @@ import { Providers } from "./(providers)/providers";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
+const BASE_URL = "https://goodrequest.com";
+
 export const metadata: Metadata = {
-  title: "GoodBoy | Podpora útulkov",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "GoodBoy | Podpora útulkov",
+    template: "%s | GoodBoy",
+  },
   description:
     "Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.",
+  openGraph: {
+    type: "website",
+    locale: "sk_SK",
+    siteName: "GoodBoy",
+    title: "GoodBoy | Podpora útulkov",
+    description:
+      "Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.",
+    images: [{ url: "/images/donation-dog.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GoodBoy | Podpora útulkov",
+    description:
+      "Podporte slovenské útulky pre psov cez jednoduchý darovací formulár.",
+    images: ["/images/donation-dog.jpg"],
+  },
 };
 
 export default function RootLayout({
